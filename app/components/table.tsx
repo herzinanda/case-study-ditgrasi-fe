@@ -86,12 +86,12 @@ export default function ProgramStudiTable() {
 
     return (
         <div className="overflow-x-auto">
-            <table className="min-w-full bg-white rounded-lg">
-                <thead className="bg-usu-dark-green bg-opacity-10 ">
+            <table className="min-w-full bg-white rounded-3xl">
+                <thead className="bg-usu-dark-green bg-opacity-10 rounded-lg first:rounded-s-xl last:rounded-e-xl">
                     { table.getHeaderGroups().map(headerGroup => (
                         <tr className='text-usu-dark-green' key={ headerGroup.id }>
                             { headerGroup.headers.map(header => (
-                                <th key={ header.id } className="px-6 py-3 text-left text-xs text-usu-dark-green font-semibold uppercase tracking-wider">
+                                <th key={ header.id } className="px-6 py-3 text-left text-sm text-usu-dark-green font-semibold tracking-wider">
                                     { header.isPlaceholder
                                         ? null
                                         : flexRender(
@@ -103,11 +103,11 @@ export default function ProgramStudiTable() {
                         </tr>
                     )) }
                 </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
+                <tbody className="bg-[#F8F8F8]">
                     { table.getRowModel().rows.map(row => (
-                        <tr key={ row.id }>
+                        <tr key={ row.id } className='hover:bg-white hover:text-black hover:font-semibold'>
                             { row.getVisibleCells().map(cell => (
-                                <td key={ cell.id } className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                <td key={ cell.id } className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 ">
                                     { flexRender(cell.column.columnDef.cell, cell.getContext()) }
                                 </td>
                             )) }
@@ -131,35 +131,6 @@ export default function ProgramStudiTable() {
                     >
                         Next
                     </button>
-                </div>
-                <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
-                    <div>
-                        <p className="text-sm text-gray-700">
-                            Showing{ ' ' }
-                            <span className="font-medium">{ table.getState().pagination.pageIndex + 1 }</span> of{ ' ' }
-                            <span className="font-medium">{ table.getPageCount() }</span> pages
-                        </p>
-                    </div>
-                    <div>
-                        <nav className="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
-                            <button
-                                onClick={ () => table.previousPage() }
-                                disabled={ !table.getCanPreviousPage() }
-                                className="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
-                            >
-                                <span className="sr-only">Previous</span>
-                                <ChevronLeft className="h-5 w-5" aria-hidden="true" />
-                            </button>
-                            <button
-                                onClick={ () => table.nextPage() }
-                                disabled={ !table.getCanNextPage() }
-                                className="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
-                            >
-                                <span className="sr-only">Next</span>
-                                <ChevronRight className="h-5 w-5" aria-hidden="true" />
-                            </button>
-                        </nav>
-                    </div>
                 </div>
             </div>
         </div>
