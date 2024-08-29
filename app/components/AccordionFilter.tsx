@@ -47,25 +47,29 @@ const AccordionFilter: React.FC<AccordionFilterProps> = ({
                     <span>Fakultas</span>
                     <span>{ isFacultyOpen ? <ChevronUp /> : <ChevronDown /> }</span>
                 </button>
-                { isFacultyOpen && (
-                    <div className="mt-2 space-y-2">
-                        { facultyItems.map((faculty, index) => (
-                            <div key={ index }>
-                                <label className="inline-flex items-center">
-                                    <input
-                                        type="checkbox"
-                                        className="form-checkbox appearance-none w-4 h-4 border-2 border-[#D9D9D9] rounded-sm checked:bg-usu-light-green"
-                                        value={ faculty.value }
-                                        onChange={ () => handleFacultyChange(faculty.label) }
-                                        checked={ selectedFaculties.includes(faculty.label) }
-                                        aria-label={ faculty.label }
-                                    />
-                                    <span className="ml-2 flex">{ faculty.label }</span>
-                                </label>
-                            </div>
-                        )) }
-                    </div>
-                ) }
+                <div
+                    className={ `overflow-hidden transition-all duration-500 ease-in-out ${isFacultyOpen ? 'max-h-[1000px] opacity-100' : 'max-h-0 opacity-0'}` }
+                >
+                    { isFacultyOpen && (
+                        <div className="mt-2 space-y-2">
+                            { facultyItems.map((faculty, index) => (
+                                <div key={ index }>
+                                    <label className="inline-flex items-center">
+                                        <input
+                                            type="checkbox"
+                                            className="form-checkbox appearance-none w-4 h-4 border-2 border-[#D9D9D9] rounded-sm checked:bg-usu-light-green"
+                                            value={ faculty.value }
+                                            onChange={ () => handleFacultyChange(faculty.label) }
+                                            checked={ selectedFaculties.includes(faculty.label) }
+                                            aria-label={ faculty.label }
+                                        />
+                                        <span className="ml-2 flex">{ faculty.label }</span>
+                                    </label>
+                                </div>
+                            )) }
+                        </div>
+                    ) }
+                </div>
             </div>
 
             {/* Degree Filter */ }
