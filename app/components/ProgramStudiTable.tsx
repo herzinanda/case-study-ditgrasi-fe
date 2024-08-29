@@ -162,14 +162,14 @@ export default function ProgramStudiTable({ data }: ProgramStudiTableProps) {
                     )) }
                 </tbody>
             </table>
-            <div className="flex justify-between items-center">
+            <div className="block text-center sm:flex justify-between items-center mt-2">
                 <div className=""></div>
                 <div className="">
                     <ul className='inline-flex gap-4 font-semibold text-sm'>
                         { renderPageNumbers() }
                     </ul>
                 </div>
-                <div className="flex gap-2 items-center">
+                <div className="flex justify-center mt-2 sm:mt-0 gap-2 items-center">
                     <p>Tampilkan </p>
                     <select
                         name="pageSize"
