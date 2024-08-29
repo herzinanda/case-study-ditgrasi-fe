@@ -162,24 +162,6 @@ export default function ProgramStudiTable({ data }: ProgramStudiTableProps) {
                     )) }
                 </tbody>
             </table>
-            <div className="flex items-center justify-between px-4 py-3 bg-white border-t border-gray-200 sm:px-6">
-                <div className="flex justify-between flex-1 sm:hidden">
-                    <button
-                        onClick={ () => table.previousPage() }
-                        disabled={ !table.getCanPreviousPage() }
-                        className="relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50"
-                    >
-                        Previous
-                    </button>
-                    <button
-                        onClick={ () => table.nextPage() }
-                        disabled={ !table.getCanNextPage() }
-                        className="relative inline-flex items-center px-4 py-2 ml-3 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50"
-                    >
-                        Next
-                    </button>
-                </div>
-            </div>
             <div className="flex justify-between items-center">
                 <div className=""></div>
                 <div className="">
