@@ -81,25 +81,29 @@ const AccordionFilter: React.FC<AccordionFilterProps> = ({
                     <span>Jenjang</span>
                     <span>{ isDegreeOpen ? <ChevronUp /> : <ChevronDown /> }</span>
                 </button>
-                { isDegreeOpen && (
-                    <div className="mt-2 space-y-2">
-                        { degreeItems.map((degree, index) => (
-                            <div key={ index }>
-                                <label className="inline-flex items-center">
-                                    <input
-                                        type="checkbox"
-                                        className="form-checkbox appearance-none w-4 h-4 border-2 border-[#D9D9D9] rounded-sm checked:bg-usu-light-green"
-                                        value={ degree.value }
-                                        onChange={ () => handleDegreeChange(degree.label) }
-                                        checked={ selectedDegrees.includes(degree.label) }
-                                        aria-label={ degree.label }
-                                    />
-                                    <span className="ml-2">{ degree.label }</span>
-                                </label>
-                            </div>
-                        )) }
-                    </div>
-                ) }
+                <div
+                    className={ `overflow-hidden transition-all duration-300 ease-in-out ${isDegreeOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}` }
+                >
+                    { isDegreeOpen && (
+                        <div className="mt-2 space-y-2">
+                            { degreeItems.map((degree, index) => (
+                                <div key={ index }>
+                                    <label className="inline-flex items-center">
+                                        <input
+                                            type="checkbox"
+                                            className="form-checkbox appearance-none w-4 h-4 border-2 border-[#D9D9D9] rounded-sm checked:bg-usu-light-green"
+                                            value={ degree.value }
+                                            onChange={ () => handleDegreeChange(degree.label) }
+                                            checked={ selectedDegrees.includes(degree.label) }
+                                            aria-label={ degree.label }
+                                        />
+                                        <span className="ml-2">{ degree.label }</span>
+                                    </label>
+                                </div>
+                            )) }
+                        </div>
+                    ) }
+                </div>
             </div>
         </div>
     );
