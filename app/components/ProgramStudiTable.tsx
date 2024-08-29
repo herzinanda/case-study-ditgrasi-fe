@@ -133,35 +133,37 @@ export default function ProgramStudiTable({ data }: ProgramStudiTableProps) {
 
     return (
         <div className="overflow-x-auto">
-            <table className="min-w-full bg-white rounded-3xl">
-                <thead className="bg-usu-dark-green bg-opacity-10 rounded-lg first:rounded-s-xl last:rounded-e-xl">
-                    { table.getHeaderGroups().map(headerGroup => (
-                        <tr className='text-usu-dark-green' key={ headerGroup.id }>
-                            { headerGroup.headers.map(header => (
-                                <th key={ header.id } className="px-6 py-3 text-left text-sm text-usu-dark-green font-semibold tracking-wider">
-                                    { header.isPlaceholder
-                                        ? null
-                                        : flexRender(
-                                            header.column.columnDef.header,
-                                            header.getContext()
-                                        ) }
-                                </th>
-                            )) }
-                        </tr>
-                    )) }
-                </thead>
-                <tbody className="bg-[#F8F8F8]">
-                    { table.getRowModel().rows.map(row => (
-                        <tr key={ row.id } className='hover:bg-white hover:text-black hover:font-semibold transition-opacity duration-500 ease-in-out opacity-0 delay-[${index * 100}ms]' style={ { opacity: 1 } }>
-                            { row.getVisibleCells().map(cell => (
-                                <td key={ cell.id } className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 ">
-                                    { flexRender(cell.column.columnDef.cell, cell.getContext()) }
-                                </td>
-                            )) }
-                        </tr>
-                    )) }
-                </tbody>
-            </table>
+            <div className="rounded-lg overflow-hidden">
+                <table className="min-w-full">
+                    <thead className="bg-usu-dark-green bg-opacity-10 first:rounded-s-xl last:rounded-e-xl">
+                        { table.getHeaderGroups().map(headerGroup => (
+                            <tr className='text-usu-dark-green' key={ headerGroup.id }>
+                                { headerGroup.headers.map(header => (
+                                    <th key={ header.id } className="px-6 py-3 text-left text-sm text-usu-dark-green font-semibold tracking-wider">
+                                        { header.isPlaceholder
+                                            ? null
+                                            : flexRender(
+                                                header.column.columnDef.header,
+                                                header.getContext()
+                                            ) }
+                                    </th>
+                                )) }
+                            </tr>
+                        )) }
+                    </thead>
+                    <tbody className="bg-[#F8F8F8]">
+                        { table.getRowModel().rows.map(row => (
+                            <tr key={ row.id } className='hover:bg-white hover:text-black hover:font-semibold transition-opacity duration-500 ease-in-out opacity-0 delay-[${index * 100}ms]' style={ { opacity: 1 } }>
+                                { row.getVisibleCells().map(cell => (
+                                    <td key={ cell.id } className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 ">
+                                        { flexRender(cell.column.columnDef.cell, cell.getContext()) }
+                                    </td>
+                                )) }
+                            </tr>
+                        )) }
+                    </tbody>
+                </table>
+            </div>
             <div className="block text-center sm:flex justify-between items-center mt-2">
                 <div className=""></div>
                 <div className="">
