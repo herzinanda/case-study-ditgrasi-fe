@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { facultyItems, degreeItems } from '../data/accreditationData';
+import { ChevronDown, ChevronUp } from 'lucide-react';
 
 interface AccordionFilterProps {
     selectedFaculties: string[];
@@ -44,7 +45,7 @@ const AccordionFilter: React.FC<AccordionFilterProps> = ({
                     className="flex justify-between w-full py-2 text-left text-sm font-semibold hover:text-green-800 focus:outline-none"
                 >
                     <span>Fakultas</span>
-                    <span>{ isFacultyOpen ? '▲' : '▼' }</span>
+                    <span>{ isFacultyOpen ? <ChevronUp /> : <ChevronDown /> }</span>
                 </button>
                 { isFacultyOpen && (
                     <div className="mt-2 space-y-2">
@@ -59,7 +60,7 @@ const AccordionFilter: React.FC<AccordionFilterProps> = ({
                                         checked={ selectedFaculties.includes(faculty.label) }
                                         aria-label={ faculty.label }
                                     />
-                                    <span className="ml-2">{ faculty.label }</span>
+                                    <span className="ml-2 flex">{ faculty.label }</span>
                                 </label>
                             </div>
                         )) }
@@ -74,7 +75,7 @@ const AccordionFilter: React.FC<AccordionFilterProps> = ({
                     className="flex justify-between w-full py-2 text-left text-sm font-semibold hover:text-green-800 focus:outline-none"
                 >
                     <span>Jenjang</span>
-                    <span>{ isDegreeOpen ? '▲' : '▼' }</span>
+                    <span>{ isDegreeOpen ? <ChevronUp /> : <ChevronDown /> }</span>
                 </button>
                 { isDegreeOpen && (
                     <div className="mt-2 space-y-2">
