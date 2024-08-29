@@ -10,7 +10,9 @@ import {
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 type ProgramStudi = {
+    id: number;
     programStudi: string;
+    faculty: string;
     jenjang: string;
     akreditasi: string;
     suratKeputusan: string;
@@ -48,35 +50,11 @@ const columns: ColumnDef<ProgramStudi, any>[] = [
     }),
 ];
 
-const data: ProgramStudi[] = [
-    {
-        programStudi: 'Ultrices Imperdiet Sed',
-        jenjang: 'Sarjana',
-        akreditasi: 'Lorem Ipsum',
-        suratKeputusan: 'XXX/SK/LAM-INFOKOM/Ak/S/XXX/2023',
-    },
-    {
-        programStudi: 'Ultrices Imperdiet Sed',
-        jenjang: 'Sarjana',
-        akreditasi: 'Lorem Ipsum',
-        suratKeputusan: 'XXX/SK/LAM-INFOKOM/Ak/S/XXX/2023',
-    },
-    {
-        programStudi: 'Ultrices Imperdiet Sed',
-        jenjang: 'Sarjana',
-        akreditasi: 'Lorem Ipsum',
-        suratKeputusan: 'XXX/SK/LAM-INFOKOM/Ak/S/XXX/2023',
-    },
-    {
-        programStudi: 'Ultrices Imperdiet Sed',
-        jenjang: 'Sarjana',
-        akreditasi: 'Lorem Ipsum',
-        suratKeputusan: 'XXX/SK/LAM-INFOKOM/Ak/S/XXX/2023',
-    },
-    // ... add more data items here
-];
+interface ProgramStudiTableProps {
+    data: ProgramStudi[];
+}
 
-export default function ProgramStudiTable() {
+export default function ProgramStudiTable({ data }: ProgramStudiTableProps) {
     const table = useReactTable({
         data,
         columns,
