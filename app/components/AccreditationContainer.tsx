@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ProgramStudiTable from './ProgramStudiTable';
 import AccordionFilter from './AccordionFilter';
+import SearchBar from './searchbar';
 
 interface StudyProgram {
     id: number;
@@ -16,6 +17,7 @@ const AccreditationContainer: React.FC = () => {
     const [filteredPrograms, setFilteredPrograms] = useState<StudyProgram[]>([]);
     const [selectedFaculties, setSelectedFaculties] = useState<string[]>([]);
     const [selectedDegrees, setSelectedDegrees] = useState<string[]>([]);
+    const [searchTerm, setSearchTerm] = useState<string>('');
 
     useEffect(() => {
         // Fetch data from your API
@@ -39,25 +41,29 @@ const AccreditationContainer: React.FC = () => {
         const filteredResults = studyPrograms.filter(program => {
             const facultyMatch = selectedFaculties.length === 0 || selectedFaculties.includes(program.faculty);
             const degreeMatch = selectedDegrees.length === 0 || selectedDegrees.includes(program.jenjang);
-            return facultyMatch && degreeMatch;
+            const searchMatch = program.programStudi.toLowerCase().includes(searchTerm.toLowerCase());
+            return facultyMatch && degreeMatch && searchMatch;
         });
         setFilteredPrograms(filteredResults);
-    }, [selectedFaculties, selectedDegrees, studyPrograms]);
+    }, [selectedFaculties, selectedDegrees, searchTerm, studyPrograms]);
 
     return (
-        <div className="grid grid-cols-12 gap-4 py-4">
-            <div className="order-last md:order-first col-span-full md:col-span-9">
-                <ProgramStudiTable data={ filteredPrograms } />
+        <>
+            <SearchBar onSearch={ setSearchTerm } />
+            <div className="grid grid-cols-12 gap-4 py-4">
+                <div className="order-last md:order-first col-span-full md:col-span-9">
+                    <ProgramStudiTable data={ filteredPrograms } />
+                </div>
+                <div className="col-span-full md:col-span-3">
+                    <AccordionFilter
+                        selectedFaculties={ selectedFaculties }
+                        setSelectedFaculties={ setSelectedFaculties }
+                        selectedDegrees={ selectedDegrees }
+                        setSelectedDegrees={ setSelectedDegrees }
+                    />
+                </div>
             </div>
-            <div className="col-span-full md:col-span-3">
-                <AccordionFilter
-                    selectedFaculties={ selectedFaculties }
-                    setSelectedFaculties={ setSelectedFaculties }
-                    selectedDegrees={ selectedDegrees }
-                    setSelectedDegrees={ setSelectedDegrees }
-                />
-            </div>
-        </div>
+        </>
     );
 };
 
