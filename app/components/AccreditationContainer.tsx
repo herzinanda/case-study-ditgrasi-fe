@@ -20,8 +20,7 @@ const AccreditationContainer: React.FC = () => {
     const [searchTerm, setSearchTerm] = useState<string>('');
 
     useEffect(() => {
-        // Fetch data from your API
-        fetch('http://127.0.0.1:8000/api/accreditations')
+        fetch(`${process.env.NEXT_PUBLIC_API_URL}/accreditations`)
             .then(response => response.json())
             .then(data => {
                 const formattedData = data.data.map((item: any) => ({
